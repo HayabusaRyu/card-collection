@@ -1,0 +1,16 @@
+<app-search-bar [(search)]="search"/>
+<div id="card-list">
+  @for (pokemon of filteredPokemons(); track pokemon; let i = $index) {
+    <app-playing-pokemon-card [pokemon]="pokemon" (click)="openPokemon(pokemon)"/>
+  } @empty {
+    <div class="centered">No Pokemons found !</div>
+  }
+</div>
+
+@if (filteredPokemons().length != 0) {
+  <div class="centered">Found {{filteredPokemons().length}} Pokemon !</div>
+}
+
+<div class="centered">
+  <button (click)="addPokemon()">Add Generic pokemon</button><br/>
+</div>

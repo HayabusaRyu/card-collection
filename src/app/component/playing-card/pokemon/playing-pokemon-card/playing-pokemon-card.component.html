@@ -1,0 +1,38 @@
+<div id="card">
+  <div id="inside" [style.background-color]="backgroundColor()">
+    <header>
+      <div class="left">
+        <div id="name">{{pokemon().name}}</div>
+      </div>
+      <div class="right">
+        <div id="hp">{{pokemon().hp}}</div>
+        <img class="energy icon" [src]="pokemonTypeIcon()"/>
+      </div>
+    </header>
+    <figure id="art">
+      <img  [src]= "pokemon().image" alt=""/>
+      <figcaption>{{pokemon().figureCaption}}</figcaption>
+    </figure>
+    <div id="capacities">
+      @for (attack of pokemon().attacks; track attack.name) {
+        <div class="capacity">
+          <div class="main">
+            <div class="cost">
+              <img class="icon energy" [src]="pokemonTypeIcon()" alt=""/>
+              <img class="icon energy" [src]="pokemonTypeIcon()" alt=""/>
+            </div>
+            <div class="name">{{ attack.name }}</div>
+            <div class="damage">{{ attack.power }}</div>
+          </div>
+          <div class="description">
+            {{ attack.description }}
+          </div>
+        </div>
+      }
+      @empty {
+        <div class="no-attacks">No attacks available</div>
+      }
+    </div>
+  </div>
+</div>
+

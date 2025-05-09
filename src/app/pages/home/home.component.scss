@@ -1,0 +1,35 @@
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px; /* Space between buttons */
+  height: 100vh; /* Full viewport height */
+}
+
+.game-button {
+  border: none;
+  padding: 20px;
+  width: 300px;
+  height: 150px;
+  border-radius: 40px;
+  background-color: rgba(82, 29, 13, 0.85);
+  cursor: pointer;
+  overflow: hidden; /* Keep image within button */
+  transition: transform 0.7s ease; /* Smooth hover effect */
+}
+
+.game-button:hover {
+  transform: scale(1.5); /* Slight scale up on hover */
+}
+
+.game-logo {
+  width: 300px; /* Fixed size */
+  height: 3000px; /* Fixed size */
+  border-radius: 40%; /* Oval shape */
+  object-fit: contain; /* Keep image proportions */
+  transition: transform 0.8s ease; /* Smooth image scale */
+}
+
+.game-button:hover .game-logo {
+  transform: scale(1.1); /* Image scale effect */
+}

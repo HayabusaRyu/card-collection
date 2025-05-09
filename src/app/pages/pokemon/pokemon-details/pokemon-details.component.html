@@ -1,0 +1,85 @@
+<div class="preview">
+  <app-playing-pokemon-card [pokemon]="pokemon"/>
+</div>
+<div class="main">
+  <form [formGroup]="formGroup" (submit)="submit($event)">
+    <div class="form-field">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" formControlName="name"/>
+      @if (isFieldValid('name')) {
+        <div class="error">This field is required</div>
+      }
+    </div>
+    <div class="form-field">
+      <label for="image">Image</label>
+      <input id="image" name="image" type="file" (change)="onFileChange($event)"/>
+      @if (isFieldValid('image')) {
+        <div class="error">This field is required</div>
+      }
+    </div>
+    <div class="form-field">
+      <label for="type">Type</label>
+      <select id="type" name="type"  formControlName="type">
+        @for(type of pokemonTypes; track type) {
+          <option [value]="type">{{type}}</option>
+        }
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="hp">HP</label>
+      <input id="hp" name="hp" type="number" formControlName="hp"/>
+      @if (isFieldValid('hp')) {
+        @if (formGroup.get('hp')?.hasError('required')) {
+          <div class="error">This field is required</div>
+        }
+        @if (formGroup.get('hp')?.hasError('min')) {
+          <div class="error">This field must be bigger than 0</div>
+        }
+        @if (formGroup.get('hp')?.hasError('max')) {
+          <div class="error">This field must be smaller or equal to 200</div>
+        }
+
+      }
+    </div>
+    <div class="form-field">
+      <label for="figureCaption">Figure Caption</label>
+      <input id="figureCaption" name="figureCaption" type="text" formControlName="figureCaption"/>
+      @if (isFieldValid('figureCaption')) {
+        <div class="error">This field is required</div>
+      }
+    </div>
+    <div formArrayName="attacks">
+      <h3>Attacks</h3>
+      @for (attackGroup of attacks.controls; track attackGroup; let i = $index) {
+        <div [formGroupName]="i">
+          <div class="form-field">
+            <label>Attack Name</label>
+            <input type="text" formControlName="name">
+          </div>
+
+          <div class="form-field">
+            <label>Attack Power</label>
+            <input type="number" formControlName="power">
+          </div>
+
+          <div class="form-field">
+            <label>Attack Type</label>
+            <select formControlName="type">
+              @for(type of attackTypes; track type) {
+                <option [value]="type">{{type}}</option>
+              }
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label>Attack Description</label>
+            <input type="text" formControlName="description">
+          </div>
+        </div>
+      }
+    </div>
+
+    <button type="submit" [disabled]="formGroup.invalid">Save</button>
+  </form>
+</div>
+

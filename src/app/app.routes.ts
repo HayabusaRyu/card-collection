@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import {LoginComponent} from './login/login.component';
-import {HomeComponent} from './component/home/home/home.component';
-import {PokemonListComponent} from './component/pokemon/pokemon-list/pokemon-list.component';
-import {PokemonDetailsComponent} from './component/pokemon/pokemon-details/pokemon-details/pokemon-details.component';
-import {YugiohListComponent} from './component/yugioh/yugioh-list/yugioh-list/yugioh-list.component';
-import {YugiohDetailsComponent} from './component/yugioh/yugioh-details/yugioh-details/yugioh-details.component';
+import {LoginComponent} from './pages/login/login.component';
+import {HomeComponent} from './pages/home/home.component';
+import {PokemonListComponent} from './pages/pokemon/pokemon-list/pokemon-list.component';
+import {PokemonDetailsComponent} from './pages/pokemon/pokemon-details/pokemon-details.component';
+import {YugiohListComponent} from './pages/yugioh/yugioh-list/yugioh-list.component';
+import {YugiohDetailsComponent} from './pages/yugioh/yugioh-details/yugioh-details.component';
 
 export const routes: Routes = [
   {
