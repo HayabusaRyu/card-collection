@@ -36,4 +36,42 @@ label {
   width: calc(100% - 340px);
 }
 
+.attack-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+
+  button {
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.capacity {
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.attack-limit {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 10px;
+
+  .limit-reached {
+    color: #ff0000;
+    font-weight: bold;
+  }
+}
+
+button[disabled] mat-icon {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
 

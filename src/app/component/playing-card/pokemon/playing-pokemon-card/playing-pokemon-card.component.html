@@ -18,8 +18,8 @@
         <div class="capacity">
           <div class="main">
             <div class="cost">
-              <img class="icon energy" [src]="pokemonTypeIcon()" alt=""/>
-              <img class="icon energy" [src]="pokemonTypeIcon()" alt=""/>
+              <img class="icon energy" [src]="getAttackTypeIcon(attack.type)" alt=""/>
+              <img class="icon energy" [src]="getAttackTypeIcon(attack.type)" alt=""/>
             </div>
             <div class="name">{{ attack.name }}</div>
             <div class="damage">{{ attack.power }}</div>

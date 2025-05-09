@@ -48,12 +48,25 @@
         <div class="error">This field is required</div>
       }
     </div>
-    <div formArrayName="attacks">
-      <h3>Attacks</h3>
+    <div id="capacities" formArrayName="attacks">
+      <div class="attack-header">
+        <h3>Attacks</h3>
+        <button mat-icon-button type="button" (click)="addAttack()" [disabled]="isMaxAttacksReached">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="attack-limit">
+        @if (isMaxAttacksReached) {
+          <span class="limit-reached">(Limite d'attaque atteinte)</span>
+        }
+      </div>
       @for (attackGroup of attacks.controls; track attackGroup; let i = $index) {
         <div [formGroupName]="i">
           <div class="form-field">
             <label>Attack Name</label>
+            <button mat-icon-button type="button" (click)="removeAttack(i)">
+              <mat-icon>remove</mat-icon>
+            </button>
             <input type="text" formControlName="name">
           </div>
 

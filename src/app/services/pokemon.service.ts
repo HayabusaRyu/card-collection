@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Pokemon} from '../models/pokemon.model';
 import {PokemonType} from '../utils/pokemon.utils';
+import {AttackType} from '../utils/pokemon-attack.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,7 @@ export class PokemonService {
     pokemon1.attacks = [
       {
         name: "Eclair",
-        type: 'electric',
+        type: AttackType.ELECTRIC,
         power: 40,
         description: 'Fait une attack éclair'
       }
@@ -59,7 +60,7 @@ export class PokemonService {
     pokemon2.attacks = [
       {
         name: "Pistolet à O",
-        type: 'eau',
+        type: AttackType.WATER,
         power: 40,
         description: 'Fait un jet d O'
       }
@@ -76,7 +77,7 @@ export class PokemonService {
     pokemon3.attacks = [
       {
         name: "Tranch'Herb",
-        type: 'plante',
+        type: AttackType.PLANT,
         power: 40,
         description: 'Attak avec des feuilles'
       }
@@ -93,7 +94,7 @@ export class PokemonService {
     pokemon4.attacks = [
       {
         name: "flameche",
-        type: 'feu',
+        type: AttackType.FIRE,
         power: 40,
         description: 'Attak avec du feu'
       }

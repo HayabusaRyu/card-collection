@@ -4,18 +4,22 @@ import {
   PlayingPokemonCardComponent
 } from '../../../component/playing-card/pokemon/playing-pokemon-card/playing-pokemon-card.component';
 import {ActivatedRoute, Router} from '@angular/router';
-import {of, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {PokemonService} from '../../../services/pokemon.service';
 import {PokemonType} from '../../../utils/pokemon.utils';
 import {Pokemon} from '../../../models/pokemon.model';
 import {AttackType} from '../../../utils/pokemon-attack.utils';
+import {MatIcon} from '@angular/material/icon';
+import {MatIconButton} from '@angular/material/button';
 
 
 @Component({
   selector: 'app-pokemon-details',
   imports: [
     ReactiveFormsModule,
-    PlayingPokemonCardComponent
+    PlayingPokemonCardComponent,
+    MatIcon,
+    MatIconButton
   ],
   templateUrl: './pokemon-details.component.html',
   standalone: true,
@@ -116,5 +120,33 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy{
     return this.formGroup.get('attacks') as FormArray;
   }
 
+  addAttack (){
+    if (this.attacks.length >= 2) {
+      console.warn('Maximum de 2 attaques atteint');
+      return;
+    }
 
+    const newAttack = {
+      name: 'New Attack',
+      type: AttackType.ELECTRIC,
+      power: 0,
+      description: ''
+    };
+
+    this.attacks.push(this.fb.group({
+      name: [newAttack.name, Validators.required],
+      type: [newAttack.type, Validators.required],
+      power: [newAttack.power],
+      description: [newAttack.description, Validators.required]
+    }));
+  }
+
+  get isMaxAttacksReached(): boolean {
+    return this.attacks.length >= 2;
+  }
+
+  removeAttack(index: number){
+    this.attacks.removeAt(index);
+    this.formGroup.markAsDirty();
+  }
 }
