@@ -4,7 +4,7 @@ export enum CardType {
   TRAP = 'trap'
 }
 
-export enum Attribute {
+export enum YugiohAttribute {
   DARK = 'dark',
   LIGHT = 'light',
   EARTH = 'earth',
@@ -12,6 +12,11 @@ export enum Attribute {
   FIRE = 'fire',
   WIND = 'wind',
   DIVINE = 'divine'
+}
+
+export enum YugiohRace {
+  SPELLCASTER = 'Spellcaster',
+  DRAGON = 'Dragon'
 }
 
 export enum SpellTrapType {
@@ -43,21 +48,21 @@ export const CardTypeProperties: { [key in CardType]: CardTypeProperty } = {
   [CardType.TRAP]: { color: '#FF69B4', spellType: 'TRAP CARD', imageUrl: '/images/yugioh/magic-trap/trap-type/TRAP.png' }
 };
 
-export const AttributeProperties: { [key in Attribute]: AttributeProperty } = {
-  [Attribute.DARK]: { imageUrl: '/images/yugioh/monsters/attributes/dark-attribute.png' },
-  [Attribute.LIGHT]: { imageUrl: '/images/yugioh/attributes/light.png'},
-  [Attribute.EARTH]: { imageUrl: '/images/yugioh/attributes/earth.png'},
-  [Attribute.WATER]: { imageUrl: '/images/yugioh/attributes/water.png'},
-  [Attribute.FIRE]: { imageUrl: '/images/yugioh/attributes/fire.png' },
-  [Attribute.WIND]: { imageUrl: '/images/yugioh/attributes/wind.png'},
-  [Attribute.DIVINE]: { imageUrl: '/images/yugioh/attributes/divine.png'}
+export const AttributeProperties: { [key in YugiohAttribute]: AttributeProperty } = {
+  [YugiohAttribute.DARK]: { imageUrl: '/images/yugioh/monsters/attributes/dark-attribute.png' },
+  [YugiohAttribute.LIGHT]: { imageUrl: '/images/yugioh/attributes/light.png'},
+  [YugiohAttribute.EARTH]: { imageUrl: '/images/yugioh/attributes/earth.png'},
+  [YugiohAttribute.WATER]: { imageUrl: '/images/yugioh/attributes/water.png'},
+  [YugiohAttribute.FIRE]: { imageUrl: '/images/yugioh/attributes/fire.png' },
+  [YugiohAttribute.WIND]: { imageUrl: '/images/yugioh/attributes/wind.png'},
+  [YugiohAttribute.DIVINE]: { imageUrl: '/images/yugioh/attributes/divine.png'}
 };
 
 export const SpellTrapProperties: { [key in SpellTrapType]: SpellTrapProperty } = {
   [SpellTrapType.NORMAL]: {},
-  [SpellTrapType.CONTINUOUS]: { imageUrl: '/images/yugioh/magic-trap/continuous.png' },
-  [SpellTrapType.QUICK_PLAY]: { imageUrl: '/images/yugioh/magic-trap/quick-play.png' },
-  [SpellTrapType.EQUIP]: { imageUrl: '/images/yugioh/magic-trap/equip.png' },
-  [SpellTrapType.FIELD]: { imageUrl: '/images/yugioh/magic-trap/field.png' },
-  [SpellTrapType.COUNTER]: { imageUrl: '/images/yugioh/magic-trap/counter.png' }
+  [SpellTrapType.CONTINUOUS]: { imageUrl: '/images/yugioh/magic-trap/spell-type/continuous.png' },
+  [SpellTrapType.QUICK_PLAY]: { imageUrl: '/images/yugioh/magic-trap/magic-type/quick-play.png' },
+  [SpellTrapType.EQUIP]: { imageUrl: '/images/yugioh/magic-trap/magic-type/equip.png' },
+  [SpellTrapType.FIELD]: { imageUrl: '/images/yugioh/magic-trap/magic-type/field.png' },
+  [SpellTrapType.COUNTER]: { imageUrl: '/images/yugioh/magic-trap/trap-type/counter.png' }
 };

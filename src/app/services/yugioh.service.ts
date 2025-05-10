@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {YugiohCard} from '../models/yugioh.model';
-import {Attribute, CardType, SpellTrapType} from '../utils/yugioh.utils';
+import {CardType, SpellTrapType, YugiohAttribute, YugiohRace} from '../utils/yugioh.utils';
 
 
 @Injectable({
@@ -37,8 +37,8 @@ export class YugiohService {
     darkMagician.id = this.currentId++;
     darkMagician.name = 'Dark Magician';
     darkMagician.cardType = CardType.MONSTER;
-    darkMagician.attribute = Attribute.DARK;
-    darkMagician.monsterType = 'Spellcaster';
+    darkMagician.attribute = YugiohAttribute.DARK;
+    darkMagician.monsterType = YugiohRace.SPELLCASTER;
     darkMagician.level = 7;
     darkMagician.atk = 2500;
     darkMagician.def = 2100;

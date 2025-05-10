@@ -1,4 +1,4 @@
-import { YugiohAttribute, YugiohRace, SpellTrapType } from '../utils/yugioh.utils';
+import {SpellTrapType, YugiohAttribute, YugiohRace} from '../utils/yugioh.utils';
 
 export interface IBaseCard {
   id: number;

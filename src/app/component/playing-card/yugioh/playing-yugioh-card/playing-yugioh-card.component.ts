@@ -1,5 +1,11 @@
 import {Component, computed, input} from '@angular/core';
-import {AttributeProperties, CardType, CardTypeProperties, SpellTrapProperties, SpellTrapType} from '../../../../utils/yugioh.utils';
+import {
+  AttributeProperties,
+  CardType,
+  CardTypeProperties,
+  SpellTrapProperties,
+  SpellTrapType
+} from '../../../../utils/yugioh.utils';
 import {YugiohCard} from '../../../../models/yugioh.model';
 
 @Component({
@@ -26,13 +32,17 @@ export class PlayingYugiohCardComponent {
 
   cardTypeIcon = computed(() => {
     if (this.isMonster()) {
-      return AttributeProperties[this.card().attribute!].imageUrl;
+      return AttributeProperties[this.card().attribute]?.imageUrl ?? '';
     }
-    return CardTypeProperties[this.card().cardType!].imageUrl;
+    return CardTypeProperties[this.card().cardType]?.imageUrl ?? '';
+  });
+
+  spellType = computed(() => {
+    return SpellTrapProperties[this.card().spellTrapType]?.imageUrl ?? '';
   });
 
   cardTypeName = computed(() => {
-    return CardTypeProperties[this.card().cardType!].spellType;
+    return CardTypeProperties[this.card().cardType]?.spellType ?? '';
   });
 
   getLevelStars(): number[] {

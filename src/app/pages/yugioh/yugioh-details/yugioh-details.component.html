@@ -42,9 +42,6 @@
               <mat-option [value]="attr">{{ attr  }}</mat-option>
             }
           </mat-select>
-          @if (isFieldInvalid('attribute')) {
-            <mat-error>Attribute is required</mat-error>
-          }
         </mat-form-field>
 
         <mat-form-field>
@@ -54,7 +51,21 @@
             <mat-error>Level (1-12)</mat-error>
           }
         </mat-form-field>
-
+        <mat-form-field>
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="monsterType">
+            @for (monsterType of monsterRace; track monsterType) {
+              <mat-option [value]="monsterType">{{ monsterType  }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description">
+          @if (isFieldInvalid('description')) {
+            <mat-error>Description is required</mat-error>
+          }
+        </mat-form-field>
         <div class="stats">
           <mat-form-field>
             <mat-label>ATK</mat-label>

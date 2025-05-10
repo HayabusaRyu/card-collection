@@ -1,15 +1,16 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {  PlayingYugiohCardComponent } from '../../../component/playing-card/yugioh/playing-yugioh-card/playing-yugioh-card.component';
+import {
+  PlayingYugiohCardComponent
+} from '../../../component/playing-card/yugioh/playing-yugioh-card/playing-yugioh-card.component';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {YugiohService} from '../../../services/yugioh.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {YugiohCard} from '../../../models/yugioh.model';
-import {Attribute, CardType, SpellTrapType} from '../../../utils/yugioh.utils';
+import {CardType, SpellTrapType, YugiohAttribute, YugiohRace} from '../../../utils/yugioh.utils';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import {Pokemon} from '../../../models/pokemon.model';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -37,7 +38,8 @@ export class YugiohDetailsComponent implements OnInit, OnDestroy{
   private formValuesSubscription: Subscription | null = null;
 
   card: YugiohCard = new YugiohCard();
-  monsterAttributes = Object.values(Attribute);
+  monsterAttributes = Object.values(YugiohAttribute);
+  monsterRace = Object.values(YugiohRace);
   cardTypes = Object.values(CardType);
   spellTypes = Object.values(SpellTrapType);
   cardId = -1;
@@ -50,21 +52,24 @@ export class YugiohDetailsComponent implements OnInit, OnDestroy{
     description: [''],
 
     // Monster-specific
-    attribute: [null as Attribute | null],
-    level: [0, [Validators.min(1), Validators.max(12)]],
+    attribute: [YugiohAttribute.DARK],
+    level: [1, [Validators.min(1), Validators.max(12)]],
     atk: [0, Validators.min(0)],
     def: [0, Validators.min(0)],
     monsterType: [''],
 
     // Spell/Trap-specific
-    spellTrapType: [null as SpellTrapType | null],
+    spellTrapType: [SpellTrapType.NORMAL],
     effectText: ['']
   });
 
   ngOnInit(): void {
     this.formValuesSubscription = this.formGroup.valueChanges.subscribe(data => {
       this.card = Object.assign(new YugiohCard(), data)
-    })
+    });
+    this.formGroup.get('cardType')?.valueChanges.subscribe(type => {
+      this.cardTypeChange(type as CardType);
+    });
     this.routeSubscription = this.activatedRoute.params.subscribe(params => {
       if(params['id']) {
         this.cardId = parseInt(params['id']);
@@ -75,6 +80,34 @@ export class YugiohDetailsComponent implements OnInit, OnDestroy{
         }
       }
     });
+  }
+
+  private cardTypeChange(newType: CardType){
+    const defaults: Partial<YugiohCard> = {
+      attribute: YugiohAttribute.DARK,
+      level: 1,
+      atk: 0,
+      def: 0,
+      spellTrapType: SpellTrapType.NORMAL,
+      effectText: ''
+    };
+
+    if(newType === CardType.MONSTER) {
+      this.formGroup.patchValue({
+          ...defaults,
+          spellTrapType: null,
+          effectText: '',
+      });
+    } else {
+      this.formGroup.patchValue({
+        ...defaults,
+        attribute: null,
+        level: null,
+        atk: null,
+        def: null,
+        monsterType: null
+      })
+    }
   }
 
   ngOnDestroy() {
@@ -115,5 +148,5 @@ export class YugiohDetailsComponent implements OnInit, OnDestroy{
   }
 
   protected readonly CardType = CardType;
-  protected readonly Attribute = Attribute;
+  protected readonly Attribute = YugiohAttribute;
 }
