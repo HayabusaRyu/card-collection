@@ -50,12 +50,12 @@ export const CardTypeProperties: { [key in CardType]: CardTypeProperty } = {
 
 export const AttributeProperties: { [key in YugiohAttribute]: AttributeProperty } = {
   [YugiohAttribute.DARK]: { imageUrl: '/images/yugioh/monsters/attributes/dark-attribute.png' },
-  [YugiohAttribute.LIGHT]: { imageUrl: '/images/yugioh/attributes/light.png'},
-  [YugiohAttribute.EARTH]: { imageUrl: '/images/yugioh/attributes/earth.png'},
-  [YugiohAttribute.WATER]: { imageUrl: '/images/yugioh/attributes/water.png'},
-  [YugiohAttribute.FIRE]: { imageUrl: '/images/yugioh/attributes/fire.png' },
-  [YugiohAttribute.WIND]: { imageUrl: '/images/yugioh/attributes/wind.png'},
-  [YugiohAttribute.DIVINE]: { imageUrl: '/images/yugioh/attributes/divine.png'}
+  [YugiohAttribute.LIGHT]: { imageUrl: '/images/yugioh/monsters/attributes/light-attribute.png'},
+  [YugiohAttribute.EARTH]: { imageUrl: '/images/yugioh/monsters/attributes/earth-attribute.png'},
+  [YugiohAttribute.WATER]: { imageUrl: '/images/yugioh/monsters/attributes/water-attribute.png'},
+  [YugiohAttribute.FIRE]: { imageUrl: '/images/yugioh/monsters/attributes/fire-attribute.png' },
+  [YugiohAttribute.WIND]: { imageUrl: '/images/yugioh/monsters/attributes/wind-attribute.png'},
+  [YugiohAttribute.DIVINE]: { imageUrl: '/images/yugioh/monsters/attributes/divine-attribute.png'}
 };
 
 export const SpellTrapProperties: { [key in SpellTrapType]: SpellTrapProperty } = {
