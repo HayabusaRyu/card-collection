@@ -1,8 +1,6 @@
-import {Component, computed, inject, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {
-  PlayingPokemonCardComponent
-} from '../../../component/playing-card/pokemon/playing-pokemon-card/playing-pokemon-card.component';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {PlayingPokemonCardComponent} from '../../../component/playing-card/pokemon/playing-pokemon-card/playing-pokemon-card.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {PokemonService} from '../../../services/pokemon.service';
@@ -10,7 +8,9 @@ import {PokemonType} from '../../../utils/pokemon.utils';
 import {Pokemon} from '../../../models/pokemon.model';
 import {AttackType} from '../../../utils/pokemon-attack.utils';
 import {MatIcon} from '@angular/material/icon';
-import {MatIconButton} from '@angular/material/button';
+import {MatButtonModule, MatIconButton} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
 
 
 @Component({
@@ -19,7 +19,10 @@ import {MatIconButton} from '@angular/material/button';
     ReactiveFormsModule,
     PlayingPokemonCardComponent,
     MatIcon,
-    MatIconButton
+    MatIconButton,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule
   ],
   templateUrl: './pokemon-details.component.html',
   standalone: true,
@@ -84,7 +87,7 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy{
   }
 
   navigateBack(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/pokemon']);
   }
 
   submit(event: Event){

@@ -1,1 +1,8 @@
-
+<app-search-bar [(search)]="search"/>
+<div id="card-list">
+  @for (card of filteredCards(); track card; let i = $index) {
+    <app-playing-yugioh-card [card]="card" (click)="openCard(card)"/>
+  } @empty {
+    <div class="centered">No Pokemons found !</div>
+  }
+</div>

@@ -3,54 +3,54 @@
 </div>
 <div class="main">
   <form [formGroup]="formGroup" (submit)="submit($event)">
-    <div class="form-field">
-      <label for="name">Name</label>
-      <input id="name" name="name" type="text" formControlName="name"/>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput id="name" name="name" type="text" formControlName="name"/>
       @if (isFieldValid('name')) {
-        <div class="error">This field is required</div>
+        <mat-error>This field is required</mat-error>
       }
-    </div>
+    </mat-form-field>
     <div class="form-field">
-      <label for="image">Image</label>
-      <input id="image" name="image" type="file" (change)="onFileChange($event)"/>
+      <button mat-raised-button type="button" (click)="imageInput.click()">Upload File : {{imageInput.files?.[0]?.name || '...'}}</button>
+      <input hidden #imageInput name="image" type="file" (change)="onFileChange($event)"/>
       @if (isFieldValid('image')) {
         <div class="error">This field is required</div>
       }
     </div>
-    <div class="form-field">
-      <label for="type">Type</label>
-      <select id="type" name="type"  formControlName="type">
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select id="type" formControlName="type">
         @for(type of pokemonTypes; track type) {
-          <option [value]="type">{{type}}</option>
+          <mat-option [value]="type">{{type}}</mat-option>
         }
-      </select>
-    </div>
-    <div class="form-field">
-      <label for="hp">HP</label>
-      <input id="hp" name="hp" type="number" formControlName="hp"/>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>HP</mat-label>
+      <input matInput id="hp" name="hp" type="number" formControlName="hp"/>
       @if (isFieldValid('hp')) {
         @if (formGroup.get('hp')?.hasError('required')) {
-          <div class="error">This field is required</div>
+          <mat-error>This field is required</mat-error>
         }
         @if (formGroup.get('hp')?.hasError('min')) {
-          <div class="error">This field must be bigger than 0</div>
+          <mat-error>This field must be bigger than 0</mat-error>
         }
         @if (formGroup.get('hp')?.hasError('max')) {
-          <div class="error">This field must be smaller or equal to 200</div>
+          <mat-error>This field must be smaller or equal to 200</mat-error>
         }
 
       }
-    </div>
-    <div class="form-field">
-      <label for="figureCaption">Figure Caption</label>
-      <input id="figureCaption" name="figureCaption" type="text" formControlName="figureCaption"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Figure Caption</mat-label>
+      <input matInput id="figureCaption" name="figureCaption" type="text" formControlName="figureCaption"/>
       @if (isFieldValid('figureCaption')) {
-        <div class="error">This field is required</div>
+        <mat-error>This field is required</mat-error>
       }
-    </div>
+    </mat-form-field>
     <div id="capacities" formArrayName="attacks">
       <div class="attack-header">
-        <h3>Attacks</h3>
+        <h3>Pokemon Attacks</h3>
         <button mat-icon-button type="button" (click)="addAttack()" [disabled]="isMaxAttacksReached">
           <mat-icon>add</mat-icon>
         </button>
@@ -61,38 +61,46 @@
         }
       </div>
       @for (attackGroup of attacks.controls; track attackGroup; let i = $index) {
-        <div [formGroupName]="i">
-          <div class="form-field">
-            <label>Attack Name</label>
+        <div class="attack-section" [formGroupName]="i">
+          <div class="attack-name-row">
+            <h4 class="attack-number">Attack {{i + 1}}</h4>
             <button mat-icon-button type="button" (click)="removeAttack(i)">
               <mat-icon>remove</mat-icon>
             </button>
-            <input type="text" formControlName="name">
           </div>
-
-          <div class="form-field">
-            <label>Attack Power</label>
-            <input type="number" formControlName="power">
-          </div>
-
-          <div class="form-field">
-            <label>Attack Type</label>
-            <select formControlName="type">
-              @for(type of attackTypes; track type) {
-                <option [value]="type">{{type}}</option>
+          <div class="attack-field">
+            <mat-form-field>
+              <mat-label>Attack Name</mat-label>
+              <input matInput id="attackName" name="attackName" type="text" formControlName="name"/>
+              @if (isFieldValid('name')) {
+                <mat-error>This field is required</mat-error>
               }
-            </select>
-          </div>
-
-          <div class="form-field">
-            <label>Attack Description</label>
-            <input type="text" formControlName="description">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label></mat-label>
+              <input matInput id="power" name="power" type="number" formControlName="power"/>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Attack Type</mat-label>
+              <mat-select id="attackType"  formControlName="type">
+                @for(type of attackTypes; track type) {
+                  <mat-option [value]="type">{{type}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Attack Description</mat-label>
+              <input matInput type="text" formControlName="description">
+            </mat-form-field>
           </div>
         </div>
       }
     </div>
 
-    <button type="submit" [disabled]="formGroup.invalid">Save</button>
+    <div class="button-container">
+      <button mat-button (click)="navigateBack()">Back</button>
+      <button mat-flat-button type="submit" [disabled]="formGroup.invalid">Save</button>
+    </div>
   </form>
 </div>
 

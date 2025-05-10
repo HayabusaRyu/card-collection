@@ -1,0 +1,44 @@
+<!-- Component Template -->
+<div class="card" [style.background-color]="cardColor()">
+  <!-- Top Band -->
+  <div class="card-top-band">
+    <div class="name">{{ card().name }}</div>
+    @if (card().cardType === CardType.MONSTER) {
+      <img class="attribute-icon" [src]="cardTypeIcon()" />
+    }
+  </div>
+
+  <!-- Level/Rank -->
+  @if (isMonster()) {
+    <div class="level-stars">
+      @for (star of getLevelStars(); track $index) {
+        <div class="star">★</div>
+      }
+    </div>
+  }
+
+  <!-- Card Image -->
+  <div class="card-image-container">
+    <img [src]="card().imageUrl" alt="{{ card().name }}" class="card-art"/>
+  </div>
+
+  <!-- Info Box -->
+  <div class="card-info-box">
+    @if (isMonster()) {
+      <div class="monster-type">{{ card().monsterType }}</div>
+      <div class="description">{{ card().description }}</div>
+      <div class="atk-def-line"></div>
+      <div class="atk-def">
+        <span>ATK/{{ card().atk }}</span>
+        <span>DEF/{{ card().def }}</span>
+      </div>
+    }
+    @else {
+      <div class="spell-trap-type">
+        <img [src]="cardTypeIcon()" />
+        [{{ card().spellTrapType | uppercase }}]
+      </div>
+      <div class="effect-text">{{ card().effectText }}</div>
+    }
+  </div>
+</div>

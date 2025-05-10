@@ -1,7 +1,7 @@
 import { YugiohAttribute, YugiohRace, SpellTrapType } from '../utils/yugioh.utils';
 
 export interface IBaseCard {
-  id?: number;
+  id: number;
   name: string;
   description: string;
   image: string;
