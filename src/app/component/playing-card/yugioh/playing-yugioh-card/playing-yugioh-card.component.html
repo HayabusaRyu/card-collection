@@ -1,44 +1,49 @@
-<!-- Component Template -->
-<div class="card" [style.background-color]="cardColor()">
-  <!-- Top Band -->
-  <div class="card-top-band">
-    <div class="name">{{ card().name }}</div>
-    @if (card().cardType === CardType.MONSTER) {
-      <img class="attribute-icon" [src]="cardTypeIcon()" />
-    }
-  </div>
+<div id="card">
+  <div id="inside" [style.background-color]="cardColor()">
+    <header [style.background-color]="cardColor()">
+      <div class="card-top-band">
+        <div class="left">
+          <div id="name">{{card().name}}</div>
+        </div>
+        <div class="right">
+          <img class="attribute icon" [src]="cardTypeIcon()" alt=""/>
+        </div>
+      </div>
+    </header>
+    <div>
+      @if (isMonster()) {
+        <div class="level-stars">
+          @for (_ of getLevelStars(); track $index) {
+            <div class="star">★</div>
+          }
+        </div>
+      }
+      @else if (isSpell() || isTrap()) {
+          <div class="spell-name">
+            {{cardTypeName()}}
+            @if (!isNormalSpell()) {
+              <img [src]="cardTypeIcon()" class="spell-icon" alt="">
+            }
+          </div>
 
-  <!-- Level/Rank -->
-  @if (isMonster()) {
-    <div class="level-stars">
-      @for (star of getLevelStars(); track $index) {
-        <div class="star">★</div>
       }
     </div>
-  }
-
-  <!-- Card Image -->
-  <div class="card-image-container">
-    <img [src]="card().imageUrl" alt="{{ card().name }}" class="card-art"/>
-  </div>
-
-  <!-- Info Box -->
-  <div class="card-info-box">
-    @if (isMonster()) {
-      <div class="monster-type">{{ card().monsterType }}</div>
-      <div class="description">{{ card().description }}</div>
-      <div class="atk-def-line"></div>
-      <div class="atk-def">
-        <span>ATK/{{ card().atk }}</span>
-        <span>DEF/{{ card().def }}</span>
-      </div>
-    }
-    @else {
-      <div class="spell-trap-type">
-        <img [src]="cardTypeIcon()" />
-        [{{ card().spellTrapType | uppercase }}]
-      </div>
-      <div class="effect-text">{{ card().effectText }}</div>
-    }
+    <figure id="art">
+      <img  [src]= "card().imageUrl" alt=""/>
+    </figure>
+    <div id="card-info-box">
+      @if (isMonster()) {
+        <div class="monster-type">{{ card().monsterType }}</div>
+        <div class="description">{{ card().description }}</div>
+        <div class="atk-def-separator"></div>
+        <div class="atk-def">
+          <span>ATK/{{ card().atk }}</span>
+          <span>DEF/{{ card().def }}</span>
+        </div>
+      }
+      @else if (isSpell() || isTrap()) {
+        <div class="effect-text">{{ card().effectText }}</div>
+      }
+    </div>
   </div>
 </div>

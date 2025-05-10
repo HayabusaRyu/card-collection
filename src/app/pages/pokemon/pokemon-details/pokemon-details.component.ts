@@ -10,7 +10,7 @@ import {AttackType} from '../../../utils/pokemon-attack.utils';
 import {MatIcon} from '@angular/material/icon';
 import {MatButtonModule, MatIconButton} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
+import {MatInputModule, MatLabel} from '@angular/material/input';
 
 
 @Component({
@@ -19,6 +19,7 @@ import {MatInputModule} from '@angular/material/input';
     ReactiveFormsModule,
     PlayingPokemonCardComponent,
     MatIcon,
+    MatLabel,
     MatIconButton,
     MatButtonModule,
     MatInputModule,

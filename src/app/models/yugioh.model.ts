@@ -1,27 +1,5 @@
-export enum CardType {
-  MONSTER = 'monster',
-  SPELL = 'spell',
-  TRAP = 'trap'
-}
+import {Attribute, CardType, SpellTrapType} from '../utils/yugioh.utils';
 
-export enum Attribute {
-  DARK = 'dark',
-  LIGHT = 'light',
-  EARTH = 'earth',
-  WATER = 'water',
-  FIRE = 'fire',
-  WIND = 'wind',
-  DIVINE = 'divine'
-}
-
-export enum SpellTrapType {
-  NORMAL = 'normal',
-  CONTINUOUS = 'continuous',
-  QUICK_PLAY = 'quick-play',
-  EQUIP = 'equip',
-  FIELD = 'field',
-  COUNTER = 'counter'
-}
 
 export class YugiohCard {
   id: number = -1;

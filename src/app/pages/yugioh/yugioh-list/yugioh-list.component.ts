@@ -38,7 +38,7 @@ export class YugiohListComponent {
     this.cards.set(this.yugiohService.getAllCards());
   }
 
-  addPokemon(){
+  addCard(){
     this.router.navigate(['yugioh/monster']);
   }
 

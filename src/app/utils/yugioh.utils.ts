@@ -1,37 +1,60 @@
-import {Attribute, CardType, SpellTrapType} from '../models/yugioh.model';
+export enum CardType {
+  MONSTER = 'monster',
+  SPELL = 'spell',
+  TRAP = 'trap'
+}
 
+export enum Attribute {
+  DARK = 'dark',
+  LIGHT = 'light',
+  EARTH = 'earth',
+  WATER = 'water',
+  FIRE = 'fire',
+  WIND = 'wind',
+  DIVINE = 'divine'
+}
+
+export enum SpellTrapType {
+  NORMAL = 'normal',
+  CONTINUOUS = 'continuous',
+  QUICK_PLAY = 'quick-play',
+  EQUIP = 'equip',
+  FIELD = 'field',
+  COUNTER = 'counter'
+}
 
 export interface CardTypeProperty {
   color: string;
+  spellType?: string;
+  imageUrl?: string;
 }
 
 export interface AttributeProperty {
   imageUrl: string;
-  color: string;
 }
 
 export interface SpellTrapProperty {
-  imageUrl: string;
+  imageUrl?: string;
 }
 
 export const CardTypeProperties: { [key in CardType]: CardTypeProperty } = {
-  [CardType.MONSTER]: { color: '#ad9647' },
-  [CardType.SPELL]: { color: '#1D9BF0' },
-  [CardType.TRAP]: { color: '#FF69B4' }
+  [CardType.MONSTER]: { color: '#c4aa54' },
+  [CardType.SPELL]: { color: '#1D9BF0', spellType: 'SPELL CARD', imageUrl: '/images/yugioh/magic-trap/magic-type/SPELL.png' },
+  [CardType.TRAP]: { color: '#FF69B4', spellType: 'TRAP CARD', imageUrl: '/images/yugioh/magic-trap/trap-type/TRAP.png' }
 };
 
 export const AttributeProperties: { [key in Attribute]: AttributeProperty } = {
-  [Attribute.DARK]: { imageUrl: '/images/yugioh/attributes/dark-attribute.png', color: '#2C2C2C' },
-  [Attribute.LIGHT]: { imageUrl: '/images/yugioh/attributes/light.png', color: '#F5F5F5' },
-  [Attribute.EARTH]: { imageUrl: '/images/yugioh/attributes/earth.png', color: '#8B4513' },
-  [Attribute.WATER]: { imageUrl: '/images/yugioh/attributes/water.png', color: '#1E90FF' },
-  [Attribute.FIRE]: { imageUrl: '/images/yugioh/attributes/fire.png', color: '#FF4500' },
-  [Attribute.WIND]: { imageUrl: '/images/yugioh/attributes/wind.png', color: '#98FB98' },
-  [Attribute.DIVINE]: { imageUrl: '/images/yugioh/attributes/divine.png', color: '#FFD700' }
+  [Attribute.DARK]: { imageUrl: '/images/yugioh/monsters/attributes/dark-attribute.png' },
+  [Attribute.LIGHT]: { imageUrl: '/images/yugioh/attributes/light.png'},
+  [Attribute.EARTH]: { imageUrl: '/images/yugioh/attributes/earth.png'},
+  [Attribute.WATER]: { imageUrl: '/images/yugioh/attributes/water.png'},
+  [Attribute.FIRE]: { imageUrl: '/images/yugioh/attributes/fire.png' },
+  [Attribute.WIND]: { imageUrl: '/images/yugioh/attributes/wind.png'},
+  [Attribute.DIVINE]: { imageUrl: '/images/yugioh/attributes/divine.png'}
 };
 
 export const SpellTrapProperties: { [key in SpellTrapType]: SpellTrapProperty } = {
-  [SpellTrapType.NORMAL]: { imageUrl: '/images/yugioh/magic-trap/normal.png' },
+  [SpellTrapType.NORMAL]: {},
   [SpellTrapType.CONTINUOUS]: { imageUrl: '/images/yugioh/magic-trap/continuous.png' },
   [SpellTrapType.QUICK_PLAY]: { imageUrl: '/images/yugioh/magic-trap/quick-play.png' },
   [SpellTrapType.EQUIP]: { imageUrl: '/images/yugioh/magic-trap/equip.png' },
