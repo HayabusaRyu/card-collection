@@ -1,0 +1,4 @@
+1) /yugioh ou /pokemon les composant se chargent avant le background
+2) pas de background a /pokemon/monster et /yugioh/monster
+3) faire en sorte que les curseur soit des pokeball ou un puzzle du millenium
+4) metres des couleurs a la barre de menu
