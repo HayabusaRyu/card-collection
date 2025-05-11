@@ -1,18 +1,20 @@
-#card-list{
+#card-list {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 2;
 }
 
 .centered {
   margin-top: 40px;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
-
 
 app-playing-pokemon-card {
-  cursor : pointer;
+  cursor: pointer;
 }
-

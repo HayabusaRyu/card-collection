@@ -1,31 +1,38 @@
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
 mat-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  position: relative;
+  z-index: 2;
+
+  .toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .toolbar-center {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .toolbar-right {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+  }
+
+  p {
+    margin: 0;
+  }
 }
-
-.toolbar-left {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex: 1;
-}
-
-.toolbar-center {
-  display: flex;
-  justify-content: center;
-  flex: 1;
-}
-
-.toolbar-right {
-  display: flex;
-  justify-content: flex-end;
-  flex: 1;
-}
-
-
-mat-toolbar p {
-  margin: 0;
-}
-

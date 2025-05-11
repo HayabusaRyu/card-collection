@@ -1,15 +1,26 @@
-body,html{
-  font-family: Roboto,sans-serif;
+// Remove all duplicates and keep only this:
+html, body {
   height: 100%;
-  background: linear-gradient(
-      545deg,
-      rgb(252,228,252),
-      rgb(218,228,255)
-  );
-}/* You can add global styles to this file, and also import other style files */
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --route-bg-image: none;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.route-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: var(--route-bg-image) center center/cover fixed;
+  pointer-events: none;
+  transition: background-image 0.5s ease-in-out;
+}
+
+body {
+  background: transparent !important;
+}

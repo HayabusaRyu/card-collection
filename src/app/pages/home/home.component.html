@@ -1,8 +1,31 @@
-<div class="centered">
-  <button mat-flat-button (click)="navigateTo('pokemon')" class="game-button">
-    <img src="/images/logos/pokemon-logo.png" alt="Pokémon Collection" class="game-logo"/>
-  </button>
-  <button mat-flat-button (click)="navigateTo('yugioh')" class="game-button">
-    <img src="/images/logos/yugioh-logo.png" alt="Yu-Gi-Oh! Collection" class="game-logo"/>
-  </button>
+<div class="page-container">
+  <div class="background left" [class.active]="hoverState === 'pokemon'"></div>
+  <div class="background right" [class.active]="hoverState === 'yugioh'"></div>
+
+  <!-- Buttons container -->
+  <div class="buttons-container">
+    <div class="button-wrapper left">
+      <button mat-flat-button
+              class="game-button"
+              (click)="navigateTo('pokemon')"
+              (mouseenter)="onHover('pokemon')"
+              (mouseleave)="onLeave()">
+        <img src="/images/logos/pokemon-logo.png"
+             alt="Pokémon Collection"
+             class="game-logo"/>
+      </button>
+    </div>
+    <div class="button-wrapper right">
+      <button mat-flat-button
+              class="game-button"
+              (click)="navigateTo('yugioh')"
+              (mouseenter)="onHover('yugioh')"
+              (mouseleave)="onLeave()">
+        <img src="/images/logos/yugioh-logo.png"
+             alt="Yu-Gi-Oh! Collection"
+             class="game-logo"/>
+      </button>
+    </div>
+  </div>
 </div>
+
