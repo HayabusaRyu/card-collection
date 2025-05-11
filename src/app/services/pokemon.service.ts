@@ -70,14 +70,14 @@ export class PokemonService {
     const pokemon3 = new Pokemon();
     pokemon3.id = this.currentIndex++;
     pokemon3.image = "/images/pokemon/monsters/bulb.jpg";
-    pokemon3.type = PokemonType.PLANT
+    pokemon3.type = PokemonType.GRASS
     pokemon3.name = "Bulb";
     pokemon3.hp  = 40;
     pokemon3.figureCaption = "N°001 Bulb";
     pokemon3.attacks = [
       {
         name: "Tranch'Herb",
-        type: AttackType.PLANT,
+        type: AttackType.GRASS,
         power: 40,
         description: 'Attak avec des feuilles'
       }
@@ -100,6 +100,98 @@ export class PokemonService {
       }
     ]
     this.pokemons.push(pokemon4);
+
+    const pokemon5 = new Pokemon();
+    pokemon5.id = this.currentIndex++;
+    pokemon5.image = "/images/pokemon/monsters/cater.jpg";
+    pokemon5.type = PokemonType.BUG
+    pokemon5.name = "Chenipan";
+    pokemon5.hp  = 40;
+    pokemon5.figureCaption = "N°007 Chenipan";
+    pokemon5.attacks = [
+      {
+        name: "charge",
+        type: AttackType.NORMAL,
+        power: 10,
+        description: 'Charge'
+      }
+    ]
+    this.pokemons.push(pokemon5);
+
+    const pokemon6 = new Pokemon();
+    pokemon6.id = this.currentIndex++;
+    pokemon6.image = "/images/pokemon/monsters/machoc.jpg";
+    pokemon6.type = PokemonType.FIGHTING
+    pokemon6.name = "Machoc";
+    pokemon6.hp  = 40;
+    pokemon6.figureCaption = "N°007 Machoc";
+    pokemon6.attacks = [
+      {
+        name: "karaté chop",
+        type: AttackType.FIGHTING,
+        power: 15,
+        description: 'Karaté'
+      }
+    ]
+    this.pokemons.push(pokemon6);
+
+    const pokemon7 = new Pokemon();
+    pokemon7.id = this.currentIndex++;
+    pokemon7.image = "/images/pokemon/monsters/roucool.jpg";
+    pokemon7.type = PokemonType.FLYING
+    pokemon7.name = "Roucool";
+    pokemon7.hp  = 40;
+    pokemon7.figureCaption = "N°016 Roucool";
+    pokemon7.attacks = [
+      {
+        name: "Cru'aile",
+        type: AttackType.FLYING,
+        power: 15,
+        description: 'attack avec les 2 ailes'
+      }
+    ]
+    this.pokemons.push(pokemon7);
+
+    const pokemon8 = new Pokemon();
+    pokemon8.id = this.currentIndex++;
+    pokemon8.image = "/images/pokemon/monsters/artico.jpg";
+    pokemon8.type = PokemonType.ICE
+    pokemon8.name = "Articodin";
+    pokemon8.hp  = 120;
+    pokemon8.figureCaption = "N°144 Articodin";
+    pokemon8.attacks = [
+      {
+        name: "Laser Glace",
+        type: AttackType.ICE,
+        power: 90,
+        description: 'Rayon de givre'
+      }
+    ]
+    this.pokemons.push(pokemon8);
+
+
+    const pokemon9 = new Pokemon();
+    pokemon9.id = this.currentIndex++;
+    pokemon9.image = "/images/pokemon/monsters/dracolosse.jpg";
+    pokemon9.type = PokemonType.DRAGON
+    pokemon9.name = "Dracolosse";
+    pokemon9.hp  = 120;
+    pokemon9.figureCaption = "N°149 Dracolosse";
+    pokemon9.attacks = [
+      {
+        name: "Ultra Laser",
+        type: AttackType.NORMAL,
+        power: 150,
+        description: 'Rayon du dragon'
+      },
+      {
+        name: "Draco-Rage",
+        type: AttackType.DRAGON,
+        power: 60,
+        description: 'Rage du dragon'
+      }
+    ]
+    this.pokemons.push(pokemon9);
   }
 
   getAll() : Pokemon[] {

@@ -54,6 +54,14 @@ export class YugiohService {
     darkHole.effectText = 'Destroy all monsters on the field.';
     darkHole.imageUrl = '/images/yugioh/magic-trap/dark-hole.jpg';
 
+    const darkMagicCircle = new YugiohCard();
+    darkMagicCircle.id = this.currentId++;
+    darkMagicCircle.name = 'Dark Magic Circle';
+    darkMagicCircle.cardType = CardType.SPELL;
+    darkMagicCircle.spellTrapType = SpellTrapType.CONTINUOUS;
+    darkMagicCircle.effectText = 'When this card is activated: Look at the top 3 cards of your Deck, then you can reveal 1 of them that is "Dark Magician" or a Spell/Trap that mentions "Dark Magician", and add it to your hand, also place the remaining cards on top of your Deck in any order.';
+    darkMagicCircle.imageUrl = '/images/yugioh/magic-trap/dark-magic-circle.png';
+
     const mirrorForce = new YugiohCard();
     mirrorForce.id = this.currentId++;
     mirrorForce.name = 'Mirror Force';
@@ -62,7 +70,15 @@ export class YugiohService {
     mirrorForce.effectText = 'When an opponent s monster declares an attack: Destroy all your opponent s Attack position monsters.';
     mirrorForce.imageUrl = '/images/yugioh/magic-trap/mirror-force.png';
 
-    this.cards.push(darkMagician, darkHole, mirrorForce);
+    const solemnJudgment = new YugiohCard();
+    solemnJudgment.id = this.currentId++;
+    solemnJudgment.name = 'Solemn Judgment';
+    solemnJudgment.cardType = CardType.TRAP;
+    solemnJudgment.trapType = TrapType.COUNTER;
+    solemnJudgment.effectText = 'When a monster(s) would be Summoned, OR a Spell/Trap Card is activated: Pay half your LP; negate the Summon or activation, and if you do, destroy that card.';
+    solemnJudgment.imageUrl = '/images/yugioh/magic-trap/solemn-judgment.jpg';
+
+    this.cards.push(darkMagician, darkHole, darkMagicCircle, mirrorForce, solemnJudgment);
   }
 
   getAllCards(): YugiohCard[] {
