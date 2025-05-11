@@ -25,6 +25,11 @@ export enum SpellTrapType {
   QUICK_PLAY = 'quick-play',
   EQUIP = 'equip',
   FIELD = 'field',
+}
+
+export enum TrapType {
+  NORMAL = 'normal',
+  CONTINUOUS = 'continuous',
   COUNTER = 'counter'
 }
 
@@ -39,6 +44,10 @@ export interface AttributeProperty {
 }
 
 export interface SpellTrapProperty {
+  imageUrl?: string;
+}
+
+export interface TrapProperty {
   imageUrl?: string;
 }
 
@@ -64,5 +73,11 @@ export const SpellTrapProperties: { [key in SpellTrapType]: SpellTrapProperty } 
   [SpellTrapType.QUICK_PLAY]: { imageUrl: '/images/yugioh/magic-trap/magic-type/quick-play.png' },
   [SpellTrapType.EQUIP]: { imageUrl: '/images/yugioh/magic-trap/magic-type/equip.png' },
   [SpellTrapType.FIELD]: { imageUrl: '/images/yugioh/magic-trap/magic-type/field.png' },
-  [SpellTrapType.COUNTER]: { imageUrl: '/images/yugioh/magic-trap/trap-type/counter.png' }
+
 };
+
+export const TrapProperties: { [key in TrapType]: TrapProperty} = {
+  [TrapType.NORMAL]: {},
+  [TrapType.CONTINUOUS]: { imageUrl: '/images/yugioh/magic-trap/spell-type/continuous.png' },
+  [TrapType.COUNTER]: { imageUrl: '/images/yugioh/magic-trap/trap-type/counter.png' }
+}

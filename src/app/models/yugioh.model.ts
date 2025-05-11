@@ -1,4 +1,4 @@
-import {YugiohAttribute, CardType, SpellTrapType, YugiohRace} from '../utils/yugioh.utils';
+import {CardType, SpellTrapType, TrapType, YugiohAttribute, YugiohRace} from '../utils/yugioh.utils';
 
 
 export class YugiohCard {
@@ -10,13 +10,14 @@ export class YugiohCard {
 
   // Monster-specific
   attribute: YugiohAttribute = YugiohAttribute.DARK;
-  monsterType: YugiohRace | null = null;
-  level: number = 1;
+  monsterType: YugiohRace = YugiohRace.SPELLCASTER;
+  level: number  = 1;
   atk: number = 0;
   def: number = 0;
 
   // Spell/Trap-specific
   spellTrapType: SpellTrapType = SpellTrapType.NORMAL;
+  trapType: TrapType= TrapType.NORMAL;
   effectText: string = '';
 
   copy(): YugiohCard {

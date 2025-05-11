@@ -4,7 +4,8 @@ import {
   CardType,
   CardTypeProperties,
   SpellTrapProperties,
-  SpellTrapType
+  SpellTrapType,
+  TrapProperties, TrapType, YugiohAttribute
 } from '../../../../utils/yugioh.utils';
 import {YugiohCard} from '../../../../models/yugioh.model';
 
@@ -25,20 +26,38 @@ export class PlayingYugiohCardComponent {
   isSpell = computed(() => this.card().cardType === CardType.SPELL);
   isTrap = computed(() => this.card().cardType === CardType.TRAP);
   isNormalSpell = computed(() => this.card().spellTrapType === SpellTrapType.NORMAL)
+  isNormalTrap = computed(() => this.card().trapType === TrapType.NORMAL)
 
   cardColor = computed(() => {
     return CardTypeProperties[this.card().cardType].color;
   });
 
   cardTypeIcon = computed(() => {
+    // Handle Monster cards first
     if (this.isMonster()) {
-      return AttributeProperties[this.card().attribute]?.imageUrl ?? '';
+      const attribute = this.card().attribute ?? YugiohAttribute.DARK;
+      return AttributeProperties[attribute]?.imageUrl ?? '';
     }
-    return CardTypeProperties[this.card().cardType]?.imageUrl ?? '';
+
+    const cardTypeImage = CardTypeProperties[this.card().cardType]?.imageUrl;
+    if (cardTypeImage) return cardTypeImage;
+
+    if (this.isSpell()) {
+      return SpellTrapProperties[this.card().spellTrapType]?.imageUrl ?? '';
+    }
+    if (this.isTrap()) {
+      return TrapProperties[this.card().trapType]?.imageUrl ?? '';
+    }
+
+    return '';
   });
 
-  spellType = computed(() => {
+  spellTypeIcon = computed(() => {
     return SpellTrapProperties[this.card().spellTrapType]?.imageUrl ?? '';
+  });
+
+  trapTypeIcon = computed(() => {
+    return TrapProperties[this.card().trapType]?.imageUrl ?? '';
   });
 
   cardTypeName = computed(() => {

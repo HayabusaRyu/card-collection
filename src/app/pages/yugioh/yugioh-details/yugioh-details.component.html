@@ -91,13 +91,19 @@
       <div class="spell-trap-fields">
         <mat-form-field>
           <mat-label>Spell/Trap Type</mat-label>
-          <mat-select formControlName="spellTrapType">
-            @for (stType of spellTypes; track stType) {
-              <mat-option [value]="stType">{{ stType  }}</mat-option>
-            }
-          </mat-select>
-          @if (isFieldInvalid('spellTrapType')) {
-            <mat-error>Type required</mat-error>
+
+          @if(formGroup.get('cardType')?.value === CardType.TRAP){
+            <mat-select formControlName="trapType">
+              @for (stType of trapTypes; track stType) {
+                <mat-option [value]="stType">{{ stType  }}</mat-option>
+              }
+            </mat-select>
+          } @else {
+            <mat-select formControlName="spellTrapType">
+              @for (stType of spellTypes; track stType) {
+                <mat-option [value]="stType">{{ stType  }}</mat-option>
+              }
+            </mat-select>
           }
         </mat-form-field>
 
@@ -111,7 +117,12 @@
       </div>
     }
     <!-- Submit Section -->
-    <div class="button-container">
+    <div class="button-container left">
+      @if(cardId != -1) {
+        <button mat-flat-button class="delete" type="button" (click)="deleteMonster()"> Delete </button>
+      }
+    </div>
+    <div class="button-container right">
       <button mat-button (click)="navigateBack()">Back</button>
       <button mat-flat-button type="submit" [disabled]="formGroup.invalid">Save</button>
     </div>

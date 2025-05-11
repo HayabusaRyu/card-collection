@@ -97,7 +97,12 @@
       }
     </div>
 
-    <div class="button-container">
+    <div class="button-container left">
+      @if(pokemonId != -1) {
+        <button mat-flat-button class="delete" type="button" (click)="deleteMonster()"> Delete </button>
+      }
+    </div>
+    <div class="button-container right">
       <button mat-button (click)="navigateBack()">Back</button>
       <button mat-flat-button type="submit" [disabled]="formGroup.invalid">Save</button>
     </div>

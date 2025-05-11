@@ -6,12 +6,14 @@ import {SearchBarComponent} from '../../../component/search-bar/search-bar.compo
 import {
   PlayingPokemonCardComponent
 } from '../../../component/playing-card/pokemon/playing-pokemon-card/playing-pokemon-card.component';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-pokemon-list',
   imports: [
     SearchBarComponent,
-    PlayingPokemonCardComponent
+    PlayingPokemonCardComponent,
+    MatButton
   ],
   templateUrl: './pokemon-list.component.html',
   standalone: true,

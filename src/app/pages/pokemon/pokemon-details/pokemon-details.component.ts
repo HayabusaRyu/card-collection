@@ -11,6 +11,10 @@ import {MatIcon} from '@angular/material/icon';
 import {MatButtonModule, MatIconButton} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule, MatLabel} from '@angular/material/input';
+import {MatDialog} from '@angular/material/dialog';
+import {
+  DeleteItemConfirmationDialogComponent
+} from '../../../component/delete-item-confirmation-dialog/delete-item-confirmation-dialog.component';
 
 
 @Component({
@@ -36,6 +40,7 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy{
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private pokemonService = inject(PokemonService);
+  private readonly dialog = inject(MatDialog);
 
   private routeSubscription: Subscription | null = null;
   private formValuesSubscription: Subscription | null = null;
@@ -100,6 +105,16 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy{
       this.pokemonService.update(this.pokemon);
     }
     this.navigateBack();
+  }
+
+  deleteMonster(){
+    const dialogRef = this.dialog.open(DeleteItemConfirmationDialogComponent);
+    dialogRef.afterClosed().subscribe(confirmation => {
+      if(confirmation){
+        this.pokemonService.delete(this.pokemonId);
+        this.navigateBack();
+      }
+    })
   }
 
   isFieldValid(name: string){

@@ -1,7 +1,7 @@
 <div id="card">
   <div id="inside" [style.background-color]="cardColor()">
     <header [style.background-color]="cardColor()">
-      <div class="card-top-band">
+      <div class="card-top-band" [style.background-color]="cardColor()">
         <div class="left">
           <div id="name">{{card().name}}</div>
         </div>
@@ -14,18 +14,25 @@
       @if (isMonster()) {
         <div class="level-stars">
           @for (_ of getLevelStars(); track $index) {
-            <div class="star">★</div>
+            <img class="star" src="/images/yugioh/monsters/level.png" />
           }
         </div>
       }
-      @else if (isSpell() || isTrap()) {
+      @else if (isSpell() ) {
           <div class="spell-name">
             {{cardTypeName()}}
             @if (!isNormalSpell()) {
-              <img [src]="spellType()" class="spell-icon" alt="">
+              <img [src]="spellTypeIcon()" class="spell-icon" alt="">
             }
           </div>
-
+      }
+      @else if (isTrap()){
+        <div class="spell-name">
+          {{cardTypeName()}}
+          @if (!isNormalTrap()) {
+            <img [src]="trapTypeIcon()" class="spell-icon" alt="">
+          }
+        </div>
       }
     </div>
     <figure id="art">

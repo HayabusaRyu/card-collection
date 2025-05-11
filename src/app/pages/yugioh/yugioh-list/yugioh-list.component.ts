@@ -11,12 +11,14 @@ import {
 import {PokemonService} from '../../../services/pokemon.service';
 import {Pokemon} from '../../../models/pokemon.model';
 import {YugiohCard} from '../../../models/yugioh.model';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-yugioh-list',
   imports: [
     PlayingYugiohCardComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    MatButton
   ],
   templateUrl: './yugioh-list.component.html',
   standalone: true,

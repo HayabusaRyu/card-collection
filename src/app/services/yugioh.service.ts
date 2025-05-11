@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {YugiohCard} from '../models/yugioh.model';
-import {CardType, SpellTrapType, YugiohAttribute, YugiohRace} from '../utils/yugioh.utils';
+import {CardType, SpellTrapType, TrapType, YugiohAttribute, YugiohRace} from '../utils/yugioh.utils';
 
 
 @Injectable({
@@ -58,7 +58,7 @@ export class YugiohService {
     mirrorForce.id = this.currentId++;
     mirrorForce.name = 'Mirror Force';
     mirrorForce.cardType = CardType.TRAP;
-    mirrorForce.spellTrapType = SpellTrapType.NORMAL;
+    mirrorForce.trapType = TrapType.NORMAL;
     mirrorForce.effectText = 'When an opponent s monster declares an attack: Destroy all your opponent s Attack position monsters.';
     mirrorForce.imageUrl = '/images/yugioh/magic-trap/mirror-force.png';
 

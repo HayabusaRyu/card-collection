@@ -8,10 +8,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {YugiohCard} from '../../../models/yugioh.model';
-import {CardType, SpellTrapType, YugiohAttribute, YugiohRace} from '../../../utils/yugioh.utils';
+import {CardType, SpellTrapType, TrapType, YugiohAttribute, YugiohRace} from '../../../utils/yugioh.utils';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {Subscription} from 'rxjs';
+import {
+  DeleteItemConfirmationDialogComponent
+} from '../../../component/delete-item-confirmation-dialog/delete-item-confirmation-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-yugioh-details',
@@ -33,6 +37,7 @@ export class YugiohDetailsComponent implements OnInit, OnDestroy{
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   private yugiohService = inject(YugiohService);
+  private readonly dialog = inject(MatDialog);
 
   private routeSubscription: Subscription | null = null;
   private formValuesSubscription: Subscription | null = null;
@@ -42,6 +47,7 @@ export class YugiohDetailsComponent implements OnInit, OnDestroy{
   monsterRace = Object.values(YugiohRace);
   cardTypes = Object.values(CardType);
   spellTypes = Object.values(SpellTrapType);
+  trapTypes = Object.values(TrapType);
   cardId = -1;
 
 
@@ -53,13 +59,14 @@ export class YugiohDetailsComponent implements OnInit, OnDestroy{
 
     // Monster-specific
     attribute: [YugiohAttribute.DARK],
-    level: [1, [Validators.min(1), Validators.max(12)]],
-    atk: [0, Validators.min(0)],
-    def: [0, Validators.min(0)],
-    monsterType: [''],
+    level: [1 as number | null, [Validators.min(1), Validators.max(12)]],
+    atk: [0 as number | null, [Validators.min(0)]],
+    def: [0 as number | null, [Validators.min(0)]],
+    monsterType: [YugiohRace.SPELLCASTER],
 
     // Spell/Trap-specific
     spellTrapType: [SpellTrapType.NORMAL],
+    trapType: [TrapType.NORMAL],
     effectText: ['']
   });
 
@@ -82,35 +89,52 @@ export class YugiohDetailsComponent implements OnInit, OnDestroy{
     });
   }
 
-  private cardTypeChange(newType: CardType){
-    const defaults: Partial<YugiohCard> = {
+  private cardTypeChange(newType: CardType) {
+    const monsterDefaults = {
       attribute: YugiohAttribute.DARK,
       level: 1,
       atk: 0,
       def: 0,
-      spellTrapType: SpellTrapType.NORMAL,
+      monsterType: null,
+      spellTrapType: null,
+      trapType: null,
       effectText: ''
     };
 
-    if(newType === CardType.MONSTER) {
-      this.formGroup.patchValue({
-          ...defaults,
-          spellTrapType: null,
-          effectText: '',
-      });
-    } else {
-      this.formGroup.patchValue({
-        ...defaults,
-        attribute: null,
-        level: null,
-        atk: null,
-        def: null,
-        monsterType: null
-      })
+    const spellTrapDefaults = {
+      attribute: null,
+      level: null,
+      atk: null,
+      def: null,
+      monsterType: null,
+      effectText: ''
+    };
+
+    if (newType === CardType.MONSTER) {
+      this.formGroup.patchValue(monsterDefaults as unknown as Partial<{ [K in keyof YugiohCard]: any }>);
     }
+    else if (newType === CardType.SPELL) {
+      this.formGroup.patchValue({
+        ...spellTrapDefaults,
+        spellTrapType: SpellTrapType.NORMAL,
+        trapType: null
+      } as unknown as Partial<{ [K in keyof YugiohCard]: any }>);
+    }
+    else if (newType === CardType.TRAP) {
+      this.formGroup.patchValue({
+        ...spellTrapDefaults,
+        trapType: TrapType.NORMAL,
+        spellTrapType: null
+      } as unknown as Partial<{ [K in keyof YugiohCard]: any }>);
+    }
+
+    this.formGroup.markAsUntouched();
+    this.formGroup.markAsPristine();
   }
 
   ngOnDestroy() {
+    this.routeSubscription?.unsubscribe();
+    this.formValuesSubscription?.unsubscribe();
   }
 
 
@@ -147,6 +171,15 @@ export class YugiohDetailsComponent implements OnInit, OnDestroy{
     }
   }
 
+  deleteMonster(){
+    const dialogRef = this.dialog.open(DeleteItemConfirmationDialogComponent);
+    dialogRef.afterClosed().subscribe(confirmation => {
+      if(confirmation){
+        this.yugiohService.delete(this.cardId);
+        this.navigateBack();
+      }
+    })
+  }
+
   protected readonly CardType = CardType;
-  protected readonly Attribute = YugiohAttribute;
 }
